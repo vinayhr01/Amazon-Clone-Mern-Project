@@ -41,32 +41,12 @@ function App() {
     window.location.href = '/signin';
   };
 
-  const [sidebaropen, setSidebarOpen] = useState(false);
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const { data } = await axios.get('/api/products/categories');
-        setCategories(data);
-      }
-      catch (err) {
-        toast.error(getError(err));
-      }
-    }
-    fetchCategories();
-  }, [])
-
   return (
     <BrowserRouter>
-      <div className={sidebaropen ? "d-flex flex-column site-container active-cont" : "d-flex flex-column site-container"} >
         <ToastContainer position="bottom-center" limit={1}></ToastContainer>
         <header>
           <Navbar collapseOnSelect bg="dark" variant="dark" expand="lg" fixed='top' >
             <Container>
-              <Button variant='dark' onClick={() => setSidebarOpen(!sidebaropen)}>
-                <i className='fas fa-bars'></i>
-              </Button>&nbsp; &nbsp;
               <LinkContainer to="/">
                 <Navbar.Brand><NavIcon></NavIcon>{' '}amazonia</Navbar.Brand>
               </LinkContainer>
@@ -108,20 +88,7 @@ function App() {
             </Container>
           </Navbar>
         </header>
-        <div className={sidebaropen ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column' : 'side-navbar d-flex justify-content-between flex-wrap flex-column'}>
-          <Nav className='flex-column text-white w-100 p-2'>
-            <Nav.Item>
-              <strong>Categories</strong>
-            </Nav.Item>
-            {categories.map((category, index) => (
-              <Nav.Item key={category}>
-                <LinkContainer to={`/search?category=${category}`} onClick={() => setSidebarOpen(false)}>
-                  <Nav.Link>{category}</Nav.Link>
-                </LinkContainer>
-              </Nav.Item>
-            ))}
-          </Nav>
-        </div>
+
         <main>
           <Container className="mt-3">
             <Routes>
@@ -143,7 +110,6 @@ function App() {
         <footer>
           <div className="text-center">All rights reserved &copy; 2022 </div>
         </footer>
-      </div>
     </BrowserRouter>
   );
 }
