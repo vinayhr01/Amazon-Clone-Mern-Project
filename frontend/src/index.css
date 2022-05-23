@@ -101,3 +101,7 @@ main {
 .hovering :hover {
   transform: translate(5px, -10px);
 }
+
+.search {
+  width: 200%;
+}
