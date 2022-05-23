@@ -48,6 +48,18 @@ const data = {
       numReviews: 10,
       description: 'high quality product',
     },
+    {
+      "name": "goggles",
+      "slug": "sunglasses",
+      "category": "sunglasses",
+      "image": "/images/p7.jpg",
+      "price": 35,
+      "countInStock": 15,
+      "brand": "levis",
+      "rating": 4.0,
+      "numReviews": 10,
+      "description": "high quality product"
+    }
   ],
 };
 export default data;
