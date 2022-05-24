@@ -1,6 +1,7 @@
 import express from 'express';
 import Product from '../models/ProductModel.js';
 import expressAsyncHandler from 'express-async-handler';
+import { isAuth, isAdmin } from '../utils.js';
 
 const ProductRouter = express.Router();
 
@@ -10,6 +11,28 @@ ProductRouter.get('/', async (req, res) => {
 });
 
 const PAGE_SIZE = 3;
+
+ProductRouter.get(
+    '/admin',
+    isAuth,
+    isAdmin,
+    expressAsyncHandler(async (req, res) => {
+        const { query } = req;
+        const page = query.page || 1;
+        const pageSize = query.pageSize || PAGE_SIZE;
+
+        const products = await Product.find()
+            .skip(pageSize * (page - 1))
+            .limit(pageSize);
+        const countProducts = await Product.countDocuments();
+        res.send({
+            products,
+            countProducts,
+            page,
+            pages: Math.ceil(countProducts / pageSize),
+        });
+    })
+);
 
 ProductRouter.get('/search', expressAsyncHandler(async (req, res) => {
     const { query } = req;
