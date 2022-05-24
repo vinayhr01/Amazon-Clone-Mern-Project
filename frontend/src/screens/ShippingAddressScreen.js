@@ -10,7 +10,7 @@ export default function ShippingAddressScreen() {
     const navigate = useNavigate();
     const { state, dispatch: ctxDispatch } = useContext(Store);
     const {
-        userInfo,
+        UserInfo,
         cart: { ShippingAddress },
     } = state;
     const [FullName, setFullName] = useState(ShippingAddress.FullName || '');
@@ -21,10 +21,10 @@ export default function ShippingAddressScreen() {
     );
 
     useEffect(() => {
-        if (!userInfo) {
+        if (!UserInfo) {
             navigate('/signin?redirect=/shipping');
         }
-    }, [navigate, userInfo]);
+    }, [navigate, UserInfo]);
 
     const [country, setCountry] = useState(ShippingAddress.country || '');
     const submitHandler = (e) => {
@@ -51,6 +51,7 @@ export default function ShippingAddressScreen() {
         );
         navigate('/payment');
     };
+
     return (
         <div>
             <Helmet>
@@ -59,6 +60,7 @@ export default function ShippingAddressScreen() {
 
             <CheckOutSteps step1 step2></CheckOutSteps>
             <div className="container small-container">
+                <br />
                 <h1 className="my-3">Shipping Address</h1>
                 <Form onSubmit={submitHandler}>
                     <Form.Group className="mb-3" controlId="fullName">
