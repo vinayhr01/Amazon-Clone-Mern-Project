@@ -26,9 +26,9 @@ export default function ProfileScreen() {
     const { UserInfo } = state;
     const [name, setName] = useState(UserInfo.name);
     const [email, setEmail] = useState(UserInfo.email);
-    const [password, setPassword] = useState('');
+    const [password, setPassword] = useState(''); // eslint-disable-next-line
     const [confirmPassword, setConfirmPassword] = useState('');
-
+    // eslint-disable-next-line
     const [{ loadingUpdate }, dispatch] = useReducer(reducer, {
         loadingUpdate: false,
     });
