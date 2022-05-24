@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 
+
 const reducer = (state, action) => {
     switch (action.type) {
         case 'FETCH_REQUEST':
