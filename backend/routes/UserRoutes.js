@@ -1,11 +1,21 @@
 import express from "express";
 import User from "../models/UserModel.js";
 import bcrypt from "bcryptjs";
-import { generateToken, isAuth } from "../utils.js";
+import { generateToken, isAuth, isAdmin } from "../utils.js";
 import expressAsyncHandler from "express-async-handler";
 import jwt from "jsonwebtoken"; // jsonwebtoken is used for creating authenticated requests
 
 const UserRouter = express.Router();
+
+UserRouter.get(
+    '/',
+    isAuth,
+    isAdmin,
+    expressAsyncHandler(async (req, res) => {
+        const users = await User.find({});
+        res.send(users);
+    })
+);
 
 UserRouter.post('/signin', expressAsyncHandler(async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
