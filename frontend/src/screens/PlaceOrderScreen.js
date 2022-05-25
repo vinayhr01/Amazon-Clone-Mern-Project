@@ -81,6 +81,7 @@ export default function PlaceOrderScreen() {
     }, [cart, navigate]);
     return (
         <div>
+            <br></br><br></br><br></br>
             <CheckOutSteps step1 step2 step3 step4></CheckOutSteps>
             <br />
             <Helmet>

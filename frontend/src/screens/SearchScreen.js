@@ -129,6 +129,7 @@ export default function SearchScreen() {
     };
     return (
         <div>
+            <br></br><br></br><br></br>
             <Helmet>
                 <title>Search Products</title>
             </Helmet>

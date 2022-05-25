@@ -32,6 +32,7 @@ export default function PaymentScreen() {
     }
     return (
         <div>
+            <br></br><br></br><br></br>
             <CheckOutSteps step1 step2 step3 />
             <div className="constainer small-container">
                 <br />

@@ -74,6 +74,7 @@ function ProductScreen() {
     <div>
       <Row>
         <Col md={6}>
+          <br /><br />
           <img
             className="img-large"
             src={product.image}
@@ -83,6 +84,7 @@ function ProductScreen() {
         <Col md={3}>
           <ListGroup variant="flush">
             <ListGroup.Item>
+              <br /><br />
               <Helmet>
                 <title>{product.name}</title>
               </Helmet>

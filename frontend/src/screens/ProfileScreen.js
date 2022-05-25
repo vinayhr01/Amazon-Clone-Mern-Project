@@ -61,6 +61,7 @@ export default function ProfileScreen() {
 
     return (
         <div className="container small-container">
+            <br></br><br></br><br></br>
             <Helmet>
                 <title>Profile</title>
             </Helmet>

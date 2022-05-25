@@ -50,6 +50,7 @@ export default function DashboardScreen() {
 
     return (
         <div>
+            <br></br><br></br><br></br>
             <h1>Dashboard</h1>
             {loading ? (
                 <LoadingBox />

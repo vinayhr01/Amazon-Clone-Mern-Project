@@ -51,6 +51,7 @@ export default function SignUpScreen() {
 
     return (
         <Container className="small-Container">
+            <br></br><br></br><br></br>
             <Helmet>
                 <title>SignUp</title>
             </Helmet>
