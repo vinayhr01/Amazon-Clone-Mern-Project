@@ -175,7 +175,7 @@ function App() {
           <div className="text-center">All rights reserved &copy; 2022 </div>
         </footer>
       </div>
-    </BrowserRouter >
+    </BrowserRouter>
   );
 }
 
