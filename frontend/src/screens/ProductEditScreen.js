@@ -134,7 +134,7 @@ export default function ProductEditScreen() {
             setImage(data.secure_url);
         } catch (err) {
             toast.error(getError(err));
-            dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
+            dispatch({ type: 'UPLOAD_FAIL', payload: "Error" });
         }
     };
 
