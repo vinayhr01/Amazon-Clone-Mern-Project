@@ -7,15 +7,5 @@
     "build": "cd backend && npm install && cd ../frontend && npm install && npm run build",
     "start": "node backend/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vinayhr01/mern-new.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/vinayhr01/mern-new/issues"
-  },
-  "homepage": "https://github.com/vinayhr01/mern-new#readme"
+  }
 }
