@@ -15,7 +15,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { useContext } from 'react';
 import { Store } from './Store';
 import CartScreen from './screens/CartScreen';
-import NavIcon from './NavIcon';
+//import NavIcon from './NavIcon';
 import SignInScreen from './screens/SignInScreen';
 import ShippingAddressScreen from './screens/ShippingAddressScreen';
 import SignUpScreen from './screens/SignUpScreen';
@@ -74,7 +74,7 @@ function App() {
                 <i className='fas fa-bars'></i>
               </Button>&nbsp; &nbsp;
               <LinkContainer to="/">
-                <Navbar.Brand><NavIcon></NavIcon>{' '}amazonia</Navbar.Brand>
+                <Navbar.Brand>amazonia</Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
@@ -133,6 +133,7 @@ function App() {
         <div className={sidebaropen ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column' : 'side-navbar d-flex justify-content-between flex-wrap flex-column'}>
           <Nav className='flex-column text-white w-100 p-2'>
             <Nav.Item>
+              <br></br><br></br>
               <strong>Categories</strong>
             </Nav.Item>
             {categories.map((category, index) => (
