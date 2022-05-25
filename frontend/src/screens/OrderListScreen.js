@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useReducer } from 'react';
 import Button from 'react-bootstrap/Button';
 import { Helmet } from 'react-helmet-async';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
@@ -16,6 +17,18 @@ const reducer = (state, action) => {
             return { ...state, orders: action.payload, loading: false, };
         case 'FETCH_FAIL':
             return { ...state, loading: false, error: action.payload };
+        case 'DELETE_REQUEST':
+            return { ...state, loadingDelete: true, successDelete: false };
+        case 'DELETE_SUCCESS':
+            return {
+                ...state,
+                loadingDelete: false,
+                successDelete: true,
+            };
+        case 'DELETE_FAIL':
+            return { ...state, loadingDelete: false };
+        case 'DELETE_RESET':
+            return { ...state, loadingDelete: false, successDelete: false };
         default:
             return state;
     }
@@ -25,7 +38,7 @@ export default function OrderListScreen() {
     const navigate = useNavigate();
     const { state } = useContext(Store);
     const { UserInfo } = state;
-    const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
+    const [{ loading, error, orders, loadingDelete, successDelete }, dispatch] = useReducer(reducer, {
         loading: true,
         error: '',
     });
@@ -45,8 +58,30 @@ export default function OrderListScreen() {
                 });
             }
         };
-        fetchData();
-    }, [UserInfo]);
+        if (successDelete) {
+            dispatch({ type: 'DELETE_RESET' });
+        } else {
+            fetchData();
+        }
+    }, [UserInfo, successDelete]);
+
+    const deleteHandler = async (order) => {
+        if (window.confirm('Are you sure to delete?')) {
+            try {
+                dispatch({ type: 'DELETE_REQUEST' });
+                await axios.delete(`/api/orders/${order._id}`, {
+                    headers: { Authorization: `Bearer ${UserInfo.token}` },
+                });
+                toast.success('Order deleted successfully');
+                dispatch({ type: 'DELETE_SUCCESS' });
+            } catch (err) {
+                toast.error(getError(error));
+                dispatch({
+                    type: 'DELETE_FAIL',
+                });
+            }
+        }
+    };
 
     return (
         <div>
@@ -55,6 +90,7 @@ export default function OrderListScreen() {
                 <title>Orders</title>
             </Helmet>
             <h1>Orders</h1>
+            {loadingDelete && <LoadingBox></LoadingBox>}
             {loading ? (
                 <LoadingBox></LoadingBox>
             ) : error ? (
@@ -94,6 +130,14 @@ export default function OrderListScreen() {
                                         }}
                                     >
                                         Details
+                                    </Button>
+                                    &nbsp;
+                                    <Button
+                                        type="button"
+                                        variant="light"
+                                        onClick={() => deleteHandler(order)}
+                                    >
+                                        Delete
                                     </Button>
                                 </td>
                             </tr>
