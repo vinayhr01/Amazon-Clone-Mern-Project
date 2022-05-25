@@ -6,9 +6,9 @@ import { isAdmin, isAuth } from '../utils.js';
 
 const upload = multer();
 
-const UploadRouter = express.Router();
+const uploadRouter = express.Router();
 
-UploadRouter.post(
+uploadRouter.post(
     '/',
     isAuth,
     isAdmin,
@@ -35,4 +35,4 @@ UploadRouter.post(
         res.send(result);
     }
 );
-export default UploadRouter;
+export default uploadRouter;
