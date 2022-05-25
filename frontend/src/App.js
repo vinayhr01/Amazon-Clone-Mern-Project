@@ -32,6 +32,7 @@ import AdminRoute from './components/AdminRoute';
 import ProductListScreen from './screens/ProductListScreen';
 import OrderListScreen from './screens/OrderListScreen';
 import UserListScreen from './screens/UserListScreen';
+import ProductEditScreen from './screens/ProductEditScreen';
 import { toast } from 'react-toastify';
 import { getError } from './utils';
 
@@ -163,6 +164,7 @@ function App() {
               <Route path="/admin/orders" element={<AdminRoute> <OrderListScreen /> </AdminRoute>}></Route>
               <Route path="/admin/users" element={<AdminRoute> <UserListScreen /> </AdminRoute>}></Route>
               <Route path="/admin/products" element={<AdminRoute> <ProductListScreen /> </AdminRoute>}></Route>
+              <Route path="/admin/product/:id" element={<AdminRoute> <ProductEditScreen /> </AdminRoute>} ></Route>
               <Route path="/" element={<HomeScreen />} />
             </Routes>
           </Container>
