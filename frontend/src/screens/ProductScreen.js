@@ -211,7 +211,7 @@ function ProductScreen() {
                   <option value="2">2- Fair</option>
                   <option value="3">3- Good</option>
                   <option value="4">4- Very good</option>
-                  <option value="5">5- Excelent</option>
+                  <option value="5">5- Excellent</option>
                 </Form.Select>
               </Form.Group>
               <FloatingLabel
