@@ -10,7 +10,7 @@ import uploadRouter from './routes/UploadRoutes.js';
 
 dotenv.config();
 
-mongoose.connect(process.env.MONGODB_URI).then(() => {
+mongoose.connect(process.env.MONGODB_URI_LOCAL).then(() => {
   console.log('Connected to MongoDB');
 }).catch(err => {
   console.log('Error connecting to MongoDB', err);
